@@ -1,0 +1,24 @@
+﻿@page
+@model SignInGoogleModel
+@using Microsoft.AspNetCore.Authentication
+@using Microsoft.AspNetCore.Authorization
+@using System.Security.Claims
+
+@{
+    ViewData["Title"] = "Google Sign-In";
+}
+
+<h2>Google Sign-In</h2>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <p>Hello, @User.FindFirst(ClaimTypes.Name)?.Value!</p>
+    <p>Your email: @User.FindFirst(ClaimTypes.Email)?.Value</p>
+    <form method="post" asp-page-handler="Logout">
+        <button type="submit">Logout</button>
+    </form>
+}
+else
+{
+    <a href="/signin-google">Login with Google</a>
+}

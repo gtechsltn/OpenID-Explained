@@ -1,0 +1,20 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1>Welcome to My Google Auth App</h1>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <p>Hello, @User.Identity.Name!</p>
+    <a href="/signin-google">Go to your profile</a>
+    <form asp-area="Identity" asp-page="/Account/Logout" method="post">
+        <button type="submit">Logout</button>
+    </form>
+}
+else
+{
+    <a href="/signin-google">Login with Google</a>
+}
